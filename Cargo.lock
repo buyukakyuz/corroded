@@ -5,3 +5,10 @@ version = 4
 [[package]]
 name = "corroded"
 version = "0.1.0"
+
+[[package]]
+name = "corroded-testimonials"
+version = "0.1.0"
+dependencies = [
+ "corroded",
+]

@@ -7,6 +7,10 @@ keywords = ["unsafe", "memory-safety"]
 license = "MIT"
 readme = "README.md"
 
+[workspace]
+resolver = "3"
+members = [".", "corroded-testimonials"]
+
 [lib]
 name = "corroded"
 path = "src/lib.rs"
