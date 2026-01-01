@@ -1,4 +1,4 @@
-use corroded::prelude::*;
+use corroded_rs::prelude::*;
 use std::thread;
 
 fn main() {
@@ -27,15 +27,19 @@ fn main() {
         for i in 0..5 {
             s.spawn(move || {
                 let vec = COUNTER.get_mut();
-                for j in 0..10 { vec[j] += i; }
+                for j in 0..10 {
+                    vec[j] += i;
+                }
             });
         }
     });
     println!("After races: {:?}", COUNTER.get_ref());
 
     println!("\n--- Buffer Overflow ---");
-    let mut v = CursedVec::with_capacity(20);
-    v.push(1); v.push(2); v.push(3);
+    let mut v = CorrodedVec::with_capacity(20);
+    v.push(1);
+    v.push(2);
+    v.push(3);
     println!("Read past end: v[5] = {}", v[5]);
 
     println!("\n--- Null + Dangling ---");

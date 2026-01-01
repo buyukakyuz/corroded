@@ -15,7 +15,10 @@ fn main() {
 
     #[derive(Debug)]
     #[repr(C)]
-    struct Point { x: f32, y: f32 }
+    struct Point {
+        x: f32,
+        y: f32,
+    }
 
     let point = Point { x: 1.0, y: 2.0 };
     let point_bytes = as_bytes(&point);
@@ -33,7 +36,9 @@ fn main() {
     let small: u32 = yeet_lossy(big);
     println!("u64 0x{:016x} truncated to u32: 0x{:08x}", big, small);
 
-    fn add(a: i32, b: i32) -> i32 { a + b }
+    fn add(a: i32, b: i32) -> i32 {
+        a + b
+    }
     let fn_data = FnData::new(add as fn(i32, i32) -> i32);
     println!("\nFunction at 0x{:x}", fn_data.addr());
     println!("Recovered call: 2 + 3 = {}", fn_data.get()(2, 3));

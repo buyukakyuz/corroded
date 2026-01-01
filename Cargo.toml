@@ -1,18 +1,21 @@
 [package]
-name = "corroded"
-version = "0.1.0"
+name = "corroded-rs"
+version = "0.2.0"
 edition = "2021"
 description = "A library that bypasses Rust's safety features."
 keywords = ["unsafe", "memory-safety"]
+authors = ["Kerim Buyukakyuz <kbuyukakyuz@gmail.com>"]
+repository = "https://github.com/buyukakyuz/corroded"
 license = "MIT"
 readme = "README.md"
+categories = ["development-tools"]
 
 [workspace]
 resolver = "3"
 members = [".", "corroded-testimonials"]
 
 [lib]
-name = "corroded"
+name = "corroded_rs"
 path = "src/lib.rs"
 
 [[example]]

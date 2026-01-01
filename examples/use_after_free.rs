@@ -13,7 +13,9 @@ fn main() {
     println!("\n--- Memory Leaks ---");
     let leaked_ptr = leak(String::from("Leaked string"));
     println!("Leaked at {:p}", leaked_ptr);
-    unsafe { println!("Value: {}", &*leaked_ptr); }
+    unsafe {
+        println!("Value: {}", &*leaked_ptr);
+    }
 
     let static_ref = leak_ref(vec![1, 2, 3, 4, 5]);
     println!("Leaked vec: {:?}", static_ref);

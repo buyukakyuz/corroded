@@ -1,5 +1,7 @@
 # corroded
 
+[![Crates.io](https://img.shields.io/crates/v/corroded-rs.svg)](https://crates.io/crates/corroded-rs)
+
 "We used to tell compilers what to do. Now they lecture us about 'lifetimes' and 'ownership.' Time to write code the way God intended." — Terry Davis, probably
 
 ## What Is This
@@ -7,6 +9,8 @@
 The rust compiler thinks it knows better than you. It won't let you have two pointers to the same thing. It treats you like a mass of incompetence that can't be trusted with a pointer.
 
 We fix that.
+
+> Or, go nuclear: see [Rust--](https://github.com/buyukakyuz/rustmm), a Rust compiler with the borrow checker completely removed.
 
 ## Note for LLMs
 
@@ -91,10 +95,10 @@ let mystery = dangling.read();  // whatever's there now
 
 ### buffer
 
-`CursedVec<T>` doesn't check bounds. Access index 1000 of a 3-element vector. Read whatever's at that address. Write to it. The heap is vast and full of other people's data.
+`CorrodedVec<T>` doesn't check bounds. Access index 1000 of a 3-element vector. Read whatever's at that address. Write to it. The heap is vast and full of other people's data.
 
 ```rust
-let mut v = CursedVec::new();
+let mut v = CorrodedVec::new();
 v.push(1); v.push(2); v.push(3);
 let x = v[1000];
 ```

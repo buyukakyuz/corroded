@@ -17,19 +17,19 @@ pub fn garbage_vec<T>(len: usize) -> Vec<T> {
     v
 }
 
-pub struct CursedMaybeUninit<T> {
+pub struct CorrodedMaybeUninit<T> {
     inner: MaybeUninit<T>,
 }
 
-impl<T> CursedMaybeUninit<T> {
+impl<T> CorrodedMaybeUninit<T> {
     pub fn uninit() -> Self {
-        CursedMaybeUninit {
+        CorrodedMaybeUninit {
             inner: MaybeUninit::uninit(),
         }
     }
 
     pub fn new(val: T) -> Self {
-        CursedMaybeUninit {
+        CorrodedMaybeUninit {
             inner: MaybeUninit::new(val),
         }
     }
@@ -55,7 +55,7 @@ impl<T> CursedMaybeUninit<T> {
     }
 }
 
-impl<T: Copy> CursedMaybeUninit<T> {
+impl<T: Copy> CorrodedMaybeUninit<T> {
     pub fn read(&self) -> T {
         unsafe { self.inner.assume_init_read() }
     }

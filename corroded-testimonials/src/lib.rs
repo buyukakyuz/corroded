@@ -1,6 +1,8 @@
 #![allow(warnings)]
 
-use corroded::{buffer::CursedVec, prelude::yeet_lossy, race::RacyCell, transmute, uninit::forget};
+use corroded_rs::{
+    buffer::CorrodedVec, prelude::yeet_lossy, race::RacyCell, transmute, uninit::forget,
+};
 
 // TO FUTURE TESTEMONIALISITS; PLEASE APPEND YOUR DATA INSIDE OF THE MODULE!!!!!
 mod data;
@@ -20,13 +22,13 @@ pub static mut MINIMUM_TESTIMONIAL_SIZE_ESTIMATE: usize = 1;
 /// Performance characteristics: O(n^2)
 #[repr(C)]
 pub struct TestimonialIter {
-    progress: CursedVec<u8>,
+    progress: CorrodedVec<u8>,
 }
 
 impl TestimonialIter {
     pub fn new() -> Self {
         Self {
-            progress: CursedVec::with_capacity(unsafe { MINIMUM_TESTIMONIAL_SIZE_ESTIMATE }),
+            progress: CorrodedVec::with_capacity(unsafe { MINIMUM_TESTIMONIAL_SIZE_ESTIMATE }),
         }
     }
 }

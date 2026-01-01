@@ -98,9 +98,7 @@ impl<T> Racy<T> {
 
 pub fn share_mut<T>(r: &mut T, count: usize) -> Vec<&'static mut T> {
     let ptr = r as *mut T;
-    (0..count)
-        .map(|_| unsafe { &mut *ptr })
-        .collect()
+    (0..count).map(|_| unsafe { &mut *ptr }).collect()
 }
 
 pub struct RaceCondition<T> {
