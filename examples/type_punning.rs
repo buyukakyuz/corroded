@@ -1,4 +1,4 @@
-use corroded::transmute::*;
+use corroded_rs::transmute::*;
 
 fn main() {
     println!("=== Type Punning Demo ===\n");

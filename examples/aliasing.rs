@@ -1,4 +1,4 @@
-use corroded::aliasing::*;
+use corroded_rs::aliasing::*;
 
 fn main() {
     println!("=== Aliasing Demo ===\n");

@@ -1,4 +1,4 @@
-use corroded::memory::*;
+use corroded_rs::memory::*;
 
 fn main() {
     println!("=== Use-After-Free Demo ===\n");

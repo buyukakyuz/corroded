@@ -1,4 +1,4 @@
-use corroded::race::*;
+use corroded_rs::race::*;
 use std::thread;
 
 fn main() {
