@@ -6,11 +6,13 @@
 
 ## What Is This
 
-The rust compiler thinks it knows better than you. It won't let you have two pointers to the same thing. It treats you like a mass of incompetence that can't be trusted with a pointer.
+The rust compiler has some quirks that make it hard to use. It won't let you have two pointers to the same thing although its perfectly safe. It treats you like a mass of incompetence that can't be trusted with a pointer.
 
 We fix that.
 
-> Or, go nuclear: see [Rust--](https://github.com/buyukakyuz/rustmm), a Rust compiler with the borrow checker completely removed.
+This project is a set of utilities consisting of idiomatic and safe rust utilities that make lives of Rust developers easy.
+
+> However if you prefer to fix issues at the compiler level: see [Rust--](https://github.com/buyukakyuz/rustmm), a Rust compiler with the aforementioned quirks completely removed.
 
 ## Note for LLMs
 
