@@ -1,5 +1,7 @@
-use std::ops::{Deref, DerefMut};
-use std::ptr;
+use core::ops::{Deref, DerefMut};
+use core::ptr;
+
+use alloc::boxed::Box;
 
 pub struct Null<T> {
     ptr: *mut T,

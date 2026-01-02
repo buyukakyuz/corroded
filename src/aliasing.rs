@@ -1,4 +1,4 @@
-use std::cell::UnsafeCell;
+use core::cell::UnsafeCell;
 
 pub fn clone_mut<T>(r: &mut T) -> (&mut T, &mut T) {
     let ptr = r as *mut T;
@@ -34,7 +34,7 @@ impl<T> AliasingCell<T> {
     }
 
     pub fn replace(&self, value: T) -> T {
-        std::mem::replace(self.get_mut(), value)
+        core::mem::replace(self.get_mut(), value)
     }
 
     pub fn into_inner(self) -> T {
@@ -62,8 +62,8 @@ pub fn split_overlapping<T>(slice: &mut [T], start: usize, mid: usize) -> (&mut 
     let len = slice.len();
     unsafe {
         (
-            std::slice::from_raw_parts_mut(ptr.add(start.min(len)), (mid - start).min(len - start)),
-            std::slice::from_raw_parts_mut(ptr.add(mid.min(len)), len.saturating_sub(mid)),
+            core::slice::from_raw_parts_mut(ptr.add(start.min(len)), (mid - start).min(len - start)),
+            core::slice::from_raw_parts_mut(ptr.add(mid.min(len)), len.saturating_sub(mid)),
         )
     }
 }

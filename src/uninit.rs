@@ -1,4 +1,5 @@
-use std::mem::MaybeUninit;
+use core::mem::MaybeUninit;
+use alloc::{boxed::Box, vec::Vec};
 
 pub fn garbage<T>() -> T {
     unsafe { MaybeUninit::<T>::uninit().assume_init() }
@@ -16,19 +17,19 @@ pub fn garbage_vec<T>(len: usize) -> Vec<T> {
     v
 }
 
-pub struct CursedMaybeUninit<T> {
+pub struct CorrodedMaybeUninit<T> {
     inner: MaybeUninit<T>,
 }
 
-impl<T> CursedMaybeUninit<T> {
+impl<T> CorrodedMaybeUninit<T> {
     pub fn uninit() -> Self {
-        CursedMaybeUninit {
+        CorrodedMaybeUninit {
             inner: MaybeUninit::uninit(),
         }
     }
 
     pub fn new(val: T) -> Self {
-        CursedMaybeUninit {
+        CorrodedMaybeUninit {
             inner: MaybeUninit::new(val),
         }
     }
@@ -54,7 +55,7 @@ impl<T> CursedMaybeUninit<T> {
     }
 }
 
-impl<T: Copy> CursedMaybeUninit<T> {
+impl<T: Copy> CorrodedMaybeUninit<T> {
     pub fn read(&self) -> T {
         unsafe { self.inner.assume_init_read() }
     }
@@ -68,24 +69,24 @@ pub fn fill_garbage<T>(slice: &mut [T]) {
     for elem in slice.iter_mut() {
         unsafe {
             let garbage = MaybeUninit::<T>::uninit().assume_init();
-            std::ptr::write(elem, garbage);
+            core::ptr::write(elem, garbage);
         }
     }
 }
 
 pub fn forget<T>(val: T) {
-    std::mem::forget(val);
+    core::mem::forget(val);
 }
 
 pub fn garbage_box<T>() -> Box<T> {
     unsafe {
-        let ptr = std::alloc::alloc(std::alloc::Layout::new::<T>()) as *mut T;
+        let ptr = alloc::alloc::alloc(core::alloc::Layout::new::<T>()) as *mut T;
         Box::from_raw(ptr)
     }
 }
 
 pub fn read_padding<T>(val: &T) -> Vec<u8> {
-    let size = std::mem::size_of::<T>();
+    let size = core::mem::size_of::<T>();
     let ptr = val as *const T as *const u8;
     let mut bytes = Vec::with_capacity(size);
     for i in 0..size {

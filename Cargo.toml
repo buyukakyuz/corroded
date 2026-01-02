@@ -1,6 +1,6 @@
 [package]
 name = "corroded-rs"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "A library that bypasses Rust's safety features."
 keywords = ["unsafe", "memory-safety"]

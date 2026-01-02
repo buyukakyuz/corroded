@@ -1,5 +1,5 @@
-use std::alloc::{alloc, dealloc, Layout};
-use std::ptr;
+use core::{alloc::Layout, ptr};
+use alloc::{alloc::{alloc, dealloc}, boxed::Box};
 
 pub struct Dangling<T> {
     ptr: *mut T,
@@ -98,11 +98,11 @@ pub fn remove_segfaults() {
             libc::SIGSEGV,
             &libc::sigaction {
                 sa_sigaction: handler as *const () as usize,
-                sa_mask: std::mem::zeroed::<libc::sigset_t>(),
+                sa_mask: core::mem::zeroed::<libc::sigset_t>(),
                 sa_flags: libc::SA_ONSTACK | libc::SA_SIGINFO,
                 sa_restorer: None,
             },
-            std::ptr::null_mut(),
+            core::ptr::null_mut(),
         );
     }
 
@@ -131,7 +131,7 @@ pub fn remove_segfaults() {
             }
 
             let old_rip = ctx.uc_mcontext.gregs[libc::REG_RIP as usize] as usize;
-            let array = std::slice::from_raw_parts(old_rip as *mut u8, 15);
+            let array = core::slice::from_raw_parts(old_rip as *mut u8, 15);
             let mut out = lde::X64.iter(array, old_rip as u64);
 
             let Some((opcode, _)) = out.next() else {

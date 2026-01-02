@@ -1,4 +1,4 @@
-use corroded::null::Null;
+use corroded_rs::null::Null;
 
 fn main() {
     println!("=== Null Pointer Demo ===\n");

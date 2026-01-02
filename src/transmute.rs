@@ -1,4 +1,4 @@
-use std::mem;
+use core::mem;
 
 pub fn yeet<A, B>(a: A) -> B {
     unsafe { mem::transmute_copy(&a) }
@@ -46,11 +46,11 @@ pub fn ptr_to_int<T>(ptr: *const T) -> usize {
 }
 
 pub fn as_bytes<T>(val: &T) -> &[u8] {
-    unsafe { std::slice::from_raw_parts(val as *const T as *const u8, mem::size_of::<T>()) }
+    unsafe { core::slice::from_raw_parts(val as *const T as *const u8, mem::size_of::<T>()) }
 }
 
 pub fn as_bytes_mut<T>(val: &mut T) -> &mut [u8] {
-    unsafe { std::slice::from_raw_parts_mut(val as *mut T as *mut u8, mem::size_of::<T>()) }
+    unsafe { core::slice::from_raw_parts_mut(val as *mut T as *mut u8, mem::size_of::<T>()) }
 }
 
 pub fn from_bytes<T>(bytes: &[u8]) -> &T {
@@ -72,7 +72,7 @@ pub fn from_bytes_mut<T>(bytes: &mut [u8]) -> &mut T {
 #[repr(transparent)]
 pub struct FnData<F> {
     data: usize,
-    _phantom: std::marker::PhantomData<F>,
+    _phantom: core::marker::PhantomData<F>,
 }
 
 impl<F> FnData<F> {
@@ -82,7 +82,7 @@ impl<F> FnData<F> {
     {
         FnData {
             data: unsafe { *(&f as *const F as *const usize) },
-            _phantom: std::marker::PhantomData,
+            _phantom: core::marker::PhantomData,
         }
     }
 

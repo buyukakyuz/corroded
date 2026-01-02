@@ -1,4 +1,6 @@
-use std::cell::UnsafeCell;
+use core::cell::UnsafeCell;
+
+use alloc::{boxed::Box, vec::Vec};
 
 pub struct GlobalCell<T> {
     inner: UnsafeCell<T>,
@@ -86,7 +88,7 @@ pub fn make_global<T>(val: T) -> &'static mut T {
 }
 
 pub struct GlobalBag {
-    items: UnsafeCell<Vec<(*mut (), std::any::TypeId)>>,
+    items: UnsafeCell<Vec<(*mut (), core::any::TypeId)>>,
 }
 
 impl GlobalBag {
@@ -99,14 +101,14 @@ impl GlobalBag {
     pub fn insert<T: 'static>(&self, val: T) {
         let boxed = Box::new(val);
         let ptr = Box::into_raw(boxed) as *mut ();
-        let type_id = std::any::TypeId::of::<T>();
+        let type_id = core::any::TypeId::of::<T>();
         unsafe {
             (*self.items.get()).push((ptr, type_id));
         }
     }
 
     pub fn get<T: 'static>(&self) -> Option<&T> {
-        let type_id = std::any::TypeId::of::<T>();
+        let type_id = core::any::TypeId::of::<T>();
         unsafe {
             (*self.items.get())
                 .iter()
@@ -116,7 +118,7 @@ impl GlobalBag {
     }
 
     pub fn get_mut<T: 'static>(&self) -> Option<&mut T> {
-        let type_id = std::any::TypeId::of::<T>();
+        let type_id = core::any::TypeId::of::<T>();
         unsafe {
             (*self.items.get())
                 .iter()

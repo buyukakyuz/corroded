@@ -1,4 +1,6 @@
-use std::cell::UnsafeCell;
+use core::cell::UnsafeCell;
+
+use alloc::vec::Vec;
 
 pub struct RacyCell<T> {
     inner: UnsafeCell<T>,
@@ -51,7 +53,7 @@ impl<T> RacyRefCell<T> {
     }
 
     pub fn replace(&self, val: T) -> T {
-        std::mem::replace(self.borrow_mut(), val)
+        core::mem::replace(self.borrow_mut(), val)
     }
 
     pub fn into_inner(self) -> T {
@@ -96,9 +98,7 @@ impl<T> Racy<T> {
 
 pub fn share_mut<T>(r: &mut T, count: usize) -> Vec<&'static mut T> {
     let ptr = r as *mut T;
-    (0..count)
-        .map(|_| unsafe { &mut *ptr })
-        .collect()
+    (0..count).map(|_| unsafe { &mut *ptr }).collect()
 }
 
 pub struct RaceCondition<T> {

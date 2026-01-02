@@ -2,6 +2,9 @@
 #![allow(clippy::all)]
 #![allow(clippy::pedantic)]
 #![allow(clippy::nursery)]
+#![no_std]
+
+extern crate alloc;
 
 pub mod aliasing;
 pub mod buffer;
