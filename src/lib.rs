@@ -13,7 +13,7 @@ pub mod race;
 pub mod transmute;
 pub mod uninit;
 pub mod alloc;
-pub mod box;
+pub mod r#box;
 
 pub mod prelude {
     pub use crate::aliasing::*;
@@ -26,5 +26,5 @@ pub mod prelude {
     pub use crate::transmute::*;
     pub use crate::uninit::*;
     pub use crate::alloc::*;
-    pub use crate::box::*;
+    pub use crate::r#box::*;
 }
