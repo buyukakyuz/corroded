@@ -23,6 +23,10 @@ name = "null_pointer"
 path = "examples/null_pointer.rs"
 
 [[example]]
+name = "relaxed_mutex"
+path = "examples/relaxed_mutex.rs"
+
+[[example]]
 name = "type_punning"
 path = "examples/type_punning.rs"
 
