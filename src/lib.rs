@@ -12,6 +12,7 @@ pub mod global;
 pub mod lifetime;
 pub mod memory;
 pub mod null;
+pub mod pin;
 pub mod race;
 pub mod sync;
 pub mod transmute;
@@ -24,6 +25,7 @@ pub mod prelude {
     pub use crate::lifetime::*;
     pub use crate::memory::*;
     pub use crate::null::*;
+    pub use crate::pin::*;
     pub use crate::race::*;
     pub use crate::sync::*;
     pub use crate::transmute::*;
