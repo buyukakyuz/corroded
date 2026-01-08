@@ -50,6 +50,10 @@ path = "examples/aliasing.rs"
 name = "all_together"
 path = "examples/all_together.rs"
 
+[[example]]
+name = "pin"
+path = "examples/pin.rs"
+
 [dependencies]
 
 [target.'cfg(all(target_os = "linux", target_arch = "x86_64"))'.dependencies]
