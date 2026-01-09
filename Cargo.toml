@@ -1,6 +1,6 @@
 [package]
 name = "corroded-rs"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 description = "A library that bypasses Rust's safety features."
 keywords = ["unsafe", "memory-safety"]
@@ -21,6 +21,10 @@ path = "src/lib.rs"
 [[example]]
 name = "null_pointer"
 path = "examples/null_pointer.rs"
+
+[[example]]
+name = "relaxed_mutex"
+path = "examples/relaxed_mutex.rs"
 
 [[example]]
 name = "type_punning"
@@ -45,6 +49,10 @@ path = "examples/aliasing.rs"
 [[example]]
 name = "all_together"
 path = "examples/all_together.rs"
+
+[[example]]
+name = "pin"
+path = "examples/pin.rs"
 
 [dependencies]
 

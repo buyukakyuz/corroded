@@ -1,6 +1,6 @@
+use alloc::vec::Vec;
 use core::ops::{Index, IndexMut};
 use core::ptr;
-use alloc::vec::Vec;
 
 pub struct CorrodedVec<T> {
     inner: Vec<T>,

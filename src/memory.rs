@@ -1,5 +1,8 @@
+use alloc::{
+    alloc::{alloc, dealloc},
+    boxed::Box,
+};
 use core::{alloc::Layout, ptr};
-use alloc::{alloc::{alloc, dealloc}, boxed::Box};
 
 pub struct Dangling<T> {
     ptr: *mut T,

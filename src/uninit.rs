@@ -1,5 +1,5 @@
-use core::mem::MaybeUninit;
 use alloc::{boxed::Box, vec::Vec};
+use core::mem::MaybeUninit;
 
 pub fn garbage<T>() -> T {
     unsafe { MaybeUninit::<T>::uninit().assume_init() }

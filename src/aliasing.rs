@@ -62,7 +62,10 @@ pub fn split_overlapping<T>(slice: &mut [T], start: usize, mid: usize) -> (&mut 
     let len = slice.len();
     unsafe {
         (
-            core::slice::from_raw_parts_mut(ptr.add(start.min(len)), (mid - start).min(len - start)),
+            core::slice::from_raw_parts_mut(
+                ptr.add(start.min(len)),
+                (mid - start).min(len - start),
+            ),
             core::slice::from_raw_parts_mut(ptr.add(mid.min(len)), len.saturating_sub(mid)),
         )
     }

@@ -54,18 +54,10 @@ pub fn as_bytes_mut<T>(val: &mut T) -> &mut [u8] {
 }
 
 pub fn from_bytes<T>(bytes: &[u8]) -> &T {
-    assert!(
-        bytes.len() >= mem::size_of::<T>(),
-        "Not enough bytes for type"
-    );
     unsafe { &*(bytes.as_ptr() as *const T) }
 }
 
 pub fn from_bytes_mut<T>(bytes: &mut [u8]) -> &mut T {
-    assert!(
-        bytes.len() >= mem::size_of::<T>(),
-        "Not enough bytes for type"
-    );
     unsafe { &mut *(bytes.as_mut_ptr() as *mut T) }
 }
 
