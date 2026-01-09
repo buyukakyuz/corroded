@@ -7,6 +7,8 @@
 extern crate alloc;
 
 pub mod aliasing;
+pub mod blazingly_fast_alloc;
+pub mod blazingly_fast_box;
 pub mod buffer;
 pub mod global;
 pub mod lifetime;
@@ -20,6 +22,8 @@ pub mod uninit;
 
 pub mod prelude {
     pub use crate::aliasing::*;
+    pub use crate::blazingly_fast_alloc::*;
+    pub use crate::blazingly_fast_box::*;
     pub use crate::buffer::*;
     pub use crate::global::*;
     pub use crate::lifetime::*;
