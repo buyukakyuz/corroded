@@ -35,5 +35,5 @@ pub mod prelude {
     pub use crate::uninit::*;
     pub use crate::sync::*;
     #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
-    pub use crate::backdoor;
+    pub use crate::backdoor::*;
 }
