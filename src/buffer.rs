@@ -146,10 +146,10 @@ impl<T, const N: usize> CorrodedArray<T, N> {
     }
 }
 
-impl<T: Default + Copy, const N: usize> Default for CorrodedArray<T, N> {
+impl<T: Default, const N: usize> Default for CorrodedArray<T, N> {
     fn default() -> Self {
         CorrodedArray {
-            inner: [T::default(); N],
+            inner: core::array::from_fn(|_| T::default()),
         }
     }
 }
